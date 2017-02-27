@@ -17,15 +17,15 @@ public class CSVParser {
 		ArrayList<String[]> r2 = new ArrayList<String[]>();
 		ArrayList<String[]> r4 = new ArrayList<String[]>();
 		
-		System.out.println("Scanning csv...");
-		fw.write("Scanning cvs... \n");
+//		System.out.println("Scanning csv...");
+		
 		scanToArray(r2Name, r2);
 		scanToArray(r4Name, r4);
 		
-		testPrint(r2);
-		testPrint(r4);
+//		testPrint(r2);
+//		testPrint(r4);
 		
-		printVerdict(compare(r2, r4));
+		printVerdict(compare(r2, r4, fw), fw);
 
 		
 
@@ -35,19 +35,23 @@ public class CSVParser {
 
 	
 	
-	private static void printVerdict(int diffTally) {
+	private static void printVerdict(int diffTally, FileWriter fw) throws IOException {
 		System.out.print("======================================\n       ");
+		fw.write("======================================\n       ");
 		if (diffTally == 0) {
 			System.out.println("No differences found.");
+			fw.write("No differences found.\n");
 		} else {
 			System.out.println(diffTally + " differences found.");
+			fw.write(diffTally + " differences found.\n");
 		}
 		System.out.println("======================================\n");
+		fw.write("======================================\n\n");
 	}
 
 
 
-	private static int compare(ArrayList<String[]> r2, ArrayList<String[]> r4) {
+	private static int compare(ArrayList<String[]> r2, ArrayList<String[]> r4, FileWriter fw) throws IOException {
 		int tally = 0;
 		
 		int rowCount = Math.min(r2.size(), r4.size());
@@ -66,9 +70,14 @@ public class CSVParser {
 					System.out.println("R2 ID: " + r2ID + ": " + r2cell);
 					System.out.println("R4 ID: " + r4ID + ": " + r4cell);
 					tally++;
+					
+					fw.write("NOT A MATCH: \n");
+					fw.write("R2 ID: " + r2ID + ": " + r2cell + "\n");
+					fw.write("R4 ID: " + r4ID + ": " + r4cell + "\n\n");
 				}
 			}
 			System.out.println();
+//			fw.write("\n");
 		}
 		
 		return tally;
