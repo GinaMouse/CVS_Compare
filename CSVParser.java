@@ -17,19 +17,12 @@ public class CSVParser {
 		ArrayList<String[]> r2 = new ArrayList<String[]>();
 		ArrayList<String[]> r4 = new ArrayList<String[]>();
 		
-//		System.out.println("Scanning csv...");
-		
 		scanToArray(r2Name, r2);
 		scanToArray(r4Name, r4);
 		
-//		testPrint(r2);
-//		testPrint(r4);
-		
 		printVerdict(compare(r2, r4, fw), fw);
 
-		
-
-		System.out.println("The end.");
+		System.out.println("The end :) ");
 		fw.close();
 	}
 
@@ -77,7 +70,6 @@ public class CSVParser {
 				}
 			}
 			System.out.println();
-//			fw.write("\n");
 		}
 		
 		return tally;
@@ -99,34 +91,18 @@ public class CSVParser {
 				 String[] cRow = line.split(delim);
 				 
 				 lineArray.add(cRow);
-				 
-//				 for (int col = 0; col < cRow.length; col++) {
-//					 System.out.print(" [" + cRow[col] + "] ");
-//				 }
-//				 System.out.println();
+
 			 }
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Exception: " + e + "\n")
 			e.printStackTrace();
 		}
 		
-//		System.out.println("This List is size: " + lineArray.size());
 	}
 
 	
 	
-	
-	public static void testPrint(ArrayList<String[]> r) {
-		System.out.println("\n Array is size: " + r.size());
-		for (int row = 0; row < r.size(); row++) {
-			String[] cRow = r.get(row);
-			
-			for (int col = 0; col < cRow.length; col++) {
-				System.out.print(" [" + cRow[col] + "]  ");
-			}
-			System.out.println();
-		}
-	}
+
 }
 
 
