@@ -94,7 +94,7 @@ public class CSVParser {
 
 			 }
 		} catch (IOException e) {
-			System.out.println("Exception: " + e + "\n")
+			System.out.println("Exception: " + e + "\n");
 			e.printStackTrace();
 		}
 		
